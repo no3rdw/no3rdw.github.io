@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+body {
+	background-color: black;
+	color: white;
+	font-family: 'Mako', 'Trebuchet MS', arial, serif;
+	font-size: 12px;
+	margin: 0px;
+	padding: 15px;
+}
+
+img {
+    display: block;
+}
+
+main, footer, header {
+    width: 80%;
+    margin: 10px auto;
+}
