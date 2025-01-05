@@ -110,7 +110,11 @@ export default function flickr() {
 		
 		selectPhoto(p) {
 			this.selectedPhoto = p;
-			document.body.classList.add('unscrollable');
+			if (p.id != '') {
+				document.body.classList.add('unscrollable');
+			} else {
+				document.body.classList.remove('unscrollable');
+			}
 		},
 
 		selectPhotoByID(photoID='') {
@@ -138,7 +142,7 @@ export default function flickr() {
 
 		nextPhoto() {
 			if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
-			if (this.selectedPhoto.id == "") { return this.selectPhoto (this.selectedSet.photo[0]); }
+			if (this.selectedPhoto.id == "") { return this.selectPhoto(this.selectedSet.photo[0]); }
 
 			this.selectPhoto(this.selectedSet.photo.filter((p, i, arr) => {
 				return 0 < i ? arr[i-1].id === this.selectedPhoto.id : arr[arr.length-1].id === this.selectedPhoto.id;
