@@ -118,6 +118,10 @@ footer small {
 	color: gray;
 }
 
+footer a {
+	color: white;
+}
+
 body.unscrollable {
 	overflow: hidden;
 }
