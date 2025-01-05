@@ -136,6 +136,11 @@ export default function flickr() {
 			this.selectedPhoto = this.selectedSet.photo.filter((p, i, arr) => {
 				return 0 < i ? arr[i-1].id === this.selectedPhoto.id : arr[arr.length-1].id === this.selectedPhoto.id;
 			})[0];
+		},
+
+		escape() {
+			if (this.selectedPhoto.id != "") { this.selectPhotoByID(); return; }
+			if (this.selectedSet.id != "") { this.selectSetByID(); }
 		}
 	}
 }
