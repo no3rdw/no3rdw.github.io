@@ -10,7 +10,7 @@
 		<link rel="icon" href="./img/favicon.svg" />
 		<link rel="mask-icon" href="./img/favicon.svg" color="#000000" />
 		<link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
-		<script type="module" crossorigin src="/assets/index-kiy5JCnP.js"></script>
+		<script type="module" crossorigin src="/assets/index-Crqsxd6N.js"></script>
 		<link rel="stylesheet" crossorigin href="/assets/index-y6JZQwgl.css">
 	</head>
 	<body>
@@ -19,7 +19,7 @@
 				<img src="./img/logo.svg" class="logo" />
 			</header>
 			<main>
-				<div id="flickr" x-data="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()" @keyup.escape.window="selectPhotoByID()">
+				<div id="flickr" x-data="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()" @keyup.escape.window="escape()">
 					<div id="sets" :class="selectedSet.id ? 'row shorty' : 'row'" x-transition>
 						<div class="settitle" x-on:click="selectSetByID()" x-show="selectedSet.id" x-transition><h3 class="m-0" x-text="selectedSet.title"></h3><small>Click to change category</small></div>
 						<template x-for="set in sets" :key="set.id">
