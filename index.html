@@ -38,7 +38,7 @@
 					</div>
 
 					<template x-if="selectedPhoto.id">
-						<div class="selectedphoto" x-on:click="selectPhotoByID()">
+						<div class="selectedphoto" x-on:click="selectPhotoByID()" x-swipe:right="prevPhoto()" x-swipe:left="nextPhoto()">
 							<img :src="selectedPhoto.largeuri" x-on:click="selectPhotoByID()" />
 							<p x-text="selectedPhoto.title"></p>
 						</div>
