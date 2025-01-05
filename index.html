@@ -19,7 +19,7 @@
 				<img src="./img/logo.svg" class="logo" />
 			</header>
 			<main>
-				<div id="flickr" x-data="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()">
+				<div id="flickr" x-data="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()" @keyup.escape.window="selectPhotoByID()">
 					<div id="sets" :class="selectedSet.id ? 'row shorty' : 'row'" x-transition>
 						<div class="settitle" x-on:click="selectSetByID()" x-show="selectedSet.id" x-transition><h3 class="m-0" x-text="selectedSet.title"></h3><small>Click to change category</small></div>
 						<template x-for="set in sets" :key="set.id">
