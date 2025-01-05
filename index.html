@@ -6,21 +6,52 @@
 		<title>No3rdW - Paul Gallo Portfolio Site</title>
 		<meta name="description" content="Paul Gallo's Portfolio Site">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="./css/main.css">
 		<meta name="theme-color" content="#ffffff">
 		<link rel="icon" href="./img/favicon.svg" />
 		<link rel="mask-icon" href="./img/favicon.svg" color="#000000" />
 		<link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
 	</head>
 	<body>
-		<header>
-			<img src="./img/logo.svg" class="logo" />
-		</header>
-		<main>
-			<h1>Website relaunch soon</h1>
-		</main>
-		<footer>
-			<p><sub>No3rdW &copy;2001-2025 Paul Gallo</sub></p>
-		</footer>
+		<div id="app">
+			<header>
+				<img src="./img/logo.svg" class="logo" />
+			</header>
+			<main>
+				<div id="flickr" x-data="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()">
+					<div id="sets" :class="selectedSet.id ? 'row shorty' : 'row'" x-transition>
+						<div class="settitle" x-on:click="selectSetByID()" x-show="selectedSet.id" x-transition><h3 class="m-0" x-text="selectedSet.title"></h3><small>Click to change category</small></div>
+						<template x-for="set in sets" :key="set.id">
+							<div class="col-4 col-md-2">
+								<div class="thumb" x-bind:style="{ backgroundImage: `url('${set.primary.thumburi}')` }" x-on:click="selectSetByID(set.id)">
+								</div>
+							</div>
+						</template>
+					</div>
+
+					<div id="setphotos" class="row" x-show="selectedSet.id" x-transition.opacity>
+						<template x-for="photo in selectedSet.photo" :key="photo.id">
+							<div class="col-4 col-md-2">
+								<div class="thumb" x-bind:style="{ backgroundImage: `url('${photo.thumburi}')` }"  x-on:click="selectPhotoByID(photo.id)">
+								</div>
+							</div>
+						</template>
+					</div>
+
+					<template x-if="selectedPhoto.id">
+						<div class="selectedphoto" x-on:click="selectPhotoByID()">
+							<img :src="selectedPhoto.largeuri" x-on:click="selectPhotoByID()" />
+							<p x-text="selectedPhoto.title"></p>
+						</div>
+					</template>
+
+					<!--<p x-text="selectedSet.id"></p><p x-on:click="selectSetByID()">Unselect Set</p>
+					<p x-text="selectedPhoto.id"></p><p x-on:click="selectPhotoByID()">Unselect Photo</p>-->
+				</div>
+			</main>
+			<footer>
+				<p><small>No3rdW &copy;2001-<span x-data="{year: new Date().getFullYear() }" x-text="year"></span> Paul Gallo</small></p>
+			</footer>
+		</div>
+		<script type="module" src="/src/main.js"></script>
 	</body>
 </html>
