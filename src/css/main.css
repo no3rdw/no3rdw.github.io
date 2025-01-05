@@ -19,6 +19,12 @@ main, footer, header {
     margin: 10px auto;
 }
 
+@media (width < 768px) {
+	main, footer, header {
+		width: 100%;
+	}
+}
+
 img.logo {
 	margin-bottom: 15px;
 }
