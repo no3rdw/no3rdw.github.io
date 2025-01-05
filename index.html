@@ -10,7 +10,7 @@
 		<link rel="icon" href="./img/favicon.svg" />
 		<link rel="mask-icon" href="./img/favicon.svg" color="#000000" />
 		<link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
-		<script type="module" crossorigin src="/assets/index-k2k9WVnU.js"></script>
+		<script type="module" crossorigin src="/assets/index-C_6nJHVD.js"></script>
 		<link rel="stylesheet" crossorigin href="/assets/index-DyNIOmbl.css">
 	</head>
 	<body>
@@ -40,7 +40,7 @@
 					</div>
 
 					<template x-if="selectedPhoto.id">
-						<div class="selectedphoto" x-on:click="selectPhotoByID()">
+						<div class="selectedphoto" x-on:click="selectPhotoByID()" x-swipe:right="prevPhoto()" x-swipe:left="nextPhoto()">
 							<img :src="selectedPhoto.largeuri" x-on:click="selectPhotoByID()" />
 							<p x-text="selectedPhoto.title"></p>
 						</div>
