@@ -104,15 +104,22 @@ export default function flickr() {
 				this.selectedSet = this.sets[setID];
 			} else {
 				this.selectedSet = this.nullSet;
-				this.selectedPhoto = this.nullPhoto;
+				this.selectPhoto(this.nullPhoto);
 			}	
 		},
 		
+		selectPhoto(p) {
+			this.selectedPhoto = p;
+			document.body.classList.add('unscrollable');
+		},
+
 		selectPhotoByID(photoID='') {
 			if (photoID != '') {
 				this.selectedPhoto = this.photos[photoID];
+				document.body.classList.add('unscrollable');
 			} else {
 				this.selectedPhoto = this.nullPhoto;
+				document.body.classList.remove('unscrollable');
 			}
 		},
 
@@ -122,20 +129,20 @@ export default function flickr() {
 
 		prevPhoto() {
 			if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
-			if (this.selectedPhoto.id == "") { this.selectedPhoto = this.selectedSet.photo[0]; return; }
+			if (this.selectedPhoto.id == "") { return this.selectPhoto(this.selectedSet.photo[0]); }
 
-			this.selectedPhoto = this.selectedSet.photo.filter((p, i, arr) => {
+			this.selectPhoto(this.selectedSet.photo.filter((p, i, arr) => {
 				return arr.length > i+1 ? arr[i+1].id === this.selectedPhoto.id : arr[0].id === this.selectedPhoto.id;
-			})[0];
+			})[0]);
 		},
 
 		nextPhoto() {
 			if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
-			if (this.selectedPhoto.id == "") { this.selectedPhoto = this.selectedSet.photo[0]; return; }
+			if (this.selectedPhoto.id == "") { return this.selectPhoto (this.selectedSet.photo[0]); }
 
-			this.selectedPhoto = this.selectedSet.photo.filter((p, i, arr) => {
+			this.selectPhoto(this.selectedSet.photo.filter((p, i, arr) => {
 				return 0 < i ? arr[i-1].id === this.selectedPhoto.id : arr[arr.length-1].id === this.selectedPhoto.id;
-			})[0];
+			})[0]);
 		},
 
 		escape() {

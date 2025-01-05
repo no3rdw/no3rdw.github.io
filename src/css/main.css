@@ -117,3 +117,7 @@ footer small {
 	font-size: 70%;
 	color: gray;
 }
+
+body.unscrollable {
+	overflow: hidden;
+}

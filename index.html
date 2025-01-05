@@ -27,7 +27,6 @@
 							</div>
 						</template>
 					</div>
-
 					<div id="setphotos" class="row" x-show="selectedSet.id" x-transition.opacity>
 						<template x-for="photo in selectedSet.photo" :key="photo.id">
 							<div class="col-4 col-md-2">
@@ -36,16 +35,12 @@
 							</div>
 						</template>
 					</div>
-
 					<template x-if="selectedPhoto.id">
 						<div class="selectedphoto" x-on:click="selectPhotoByID()" x-swipe:right="prevPhoto()" x-swipe:left="nextPhoto()">
 							<img :src="selectedPhoto.largeuri" x-on:click="selectPhotoByID()" />
 							<p x-text="selectedPhoto.title"></p>
 						</div>
 					</template>
-
-					<!--<p x-text="selectedSet.id"></p><p x-on:click="selectSetByID()">Unselect Set</p>
-					<p x-text="selectedPhoto.id"></p><p x-on:click="selectPhotoByID()">Unselect Photo</p>-->
 				</div>
 			</main>
 			<footer>
