@@ -10,8 +10,8 @@
 		<link rel="icon" href="./img/favicon.svg" />
 		<link rel="mask-icon" href="./img/favicon.svg" color="#000000" />
 		<link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
-		<script type="module" crossorigin src="/assets/index-tvCtMrmN.js"></script>
-		<link rel="stylesheet" crossorigin href="/assets/index-9i5LtE04.css">
+		<script type="module" crossorigin src="/assets/index-CTYFwIsu.js"></script>
+		<link rel="stylesheet" crossorigin href="/assets/index-bMPeleo8.css">
 	</head>
 	<body>
 		<div id="app">
@@ -24,21 +24,21 @@
 						<div class="settitle" x-on:click="selectSetByID()" x-show="selectedSet.id" x-transition><h3 class="m-0" x-text="selectedSet.title"></h3><small>Click to change category</small></div>
 						<div id="setlist" :class="selectedSet.id ? 'shorty' : ''" x-transition>
 							<template x-for="set in sets" :key="set.id">
-								<div class="thumb" x-bind:style="{ backgroundImage: `url('${set.primary.thumburi}')` }" x-on:click="selectSetByID(set.id)"></div>
+								<div class="thumb" x-bind:style="{ backgroundImage: `url('${set.primary.thumburi}')` }" x-on:click="selectSetByID(set.id)" :title="`Open Photoset: ${set.title}`"></div>
 							</template>
 						</div>
 					</div>
 					<div id="setphotos" class="row" x-show="selectedSet.id" x-transition.opacity>
 						<template x-for="photo in selectedSet.photo" :key="photo.id">
 							<div class="col-4 col-md-2">
-								<div class="thumb" x-bind:style="{ backgroundImage: `url('${photo.thumburi}')` }"  x-on:click="selectPhotoByID(photo.id)">
+								<div class="thumb" x-bind:style="{ backgroundImage: `url('${photo.thumburi}')` }"  x-on:click="selectPhotoByID(photo.id)" :title="`Open Photo: ${photo.title}`">
 								</div>
 							</div>
 						</template>
 					</div>
 					<template x-if="selectedPhoto.id">
 						<div class="selectedphoto" x-on:click="selectPhotoByID()" x-swipe:right="prevPhoto()" x-swipe:left="nextPhoto()">
-							<img :src="selectedPhoto.largeuri" x-on:click="selectPhotoByID()" />
+							<img :src="selectedPhoto.largeuri" x-on:click="selectPhotoByID()" title="Close Photo" />
 							<p x-text="selectedPhoto.title"></p>
 						</div>
 					</template>
