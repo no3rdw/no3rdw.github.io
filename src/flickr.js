@@ -127,26 +127,39 @@ export default function flickr() {
 			}
 		},
 
+		preloadPhoto(p) {
+			var img=new Image();
+    		img.src=p.largeuri;
+		},
+
 		buildPhotoURI(p, size='b') {
 				return `https://farm2.staticflickr.com/1103/${p.id}_${p.secret}_${size}.jpg`;
 		},
 
 		prevPhoto() {
-			if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
-			if (this.selectedPhoto.id == "") { return this.selectPhoto(this.selectedSet.photo[0]); }
-
-			this.selectPhoto(this.selectedSet.photo.filter((p, i, arr) => {
-				return arr.length > i+1 ? arr[i+1].id === this.selectedPhoto.id : arr[0].id === this.selectedPhoto.id;
-			})[0]);
+		//	if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
+		//	if (this.selectedPhoto.id == "") { return this.selectPhoto(this.selectedSet.photo[0]); }
+			this.selectPhoto(this.getPrevPhoto());
+			this.preloadPhoto(this.getPrevPhoto());
 		},
 
 		nextPhoto() {
-			if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
-			if (this.selectedPhoto.id == "") { return this.selectPhoto(this.selectedSet.photo[0]); }
+		//	if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
+		//	if (this.selectedPhoto.id == "") { return this.selectPhoto(this.selectedSet.photo[0]); }
+			this.selectPhoto(this.getNextPhoto());
+			this.preloadPhoto(this.getNextPhoto());
+		},
 
-			this.selectPhoto(this.selectedSet.photo.filter((p, i, arr) => {
+		getNextPhoto() {
+			return this.selectedSet.photo.filter((p, i, arr) => {
 				return 0 < i ? arr[i-1].id === this.selectedPhoto.id : arr[arr.length-1].id === this.selectedPhoto.id;
-			})[0]);
+			})[0];
+		},
+
+		getPrevPhoto() {
+			return this.selectedSet.photo.filter((p, i, arr) => {
+				return arr.length > i+1 ? arr[i+1].id === this.selectedPhoto.id : arr[0].id === this.selectedPhoto.id;
+			})[0];
 		},
 
 		escape() {
