@@ -10,8 +10,8 @@
 		<link rel="icon" href="./img/favicon.svg" />
 		<link rel="mask-icon" href="./img/favicon.svg" color="#000000" />
 		<link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
-		<script type="module" crossorigin src="/assets/index-CIt8346C.js"></script>
-		<link rel="stylesheet" crossorigin href="/assets/index-C_qHdFVU.css">
+		<script type="module" crossorigin src="/assets/index-tvCtMrmN.js"></script>
+		<link rel="stylesheet" crossorigin href="/assets/index-9i5LtE04.css">
 	</head>
 	<body>
 		<div id="app">
@@ -20,14 +20,13 @@
 			</header>
 			<main>
 				<div id="flickr" x-data="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()" @keyup.escape.window="escape()">
-					<div id="sets" :class="selectedSet.id ? 'row shorty' : 'row'" x-transition>
+					<div id="sets">
 						<div class="settitle" x-on:click="selectSetByID()" x-show="selectedSet.id" x-transition><h3 class="m-0" x-text="selectedSet.title"></h3><small>Click to change category</small></div>
-						<template x-for="set in sets" :key="set.id">
-							<div class="col-4 col-md-2">
-								<div class="thumb" x-bind:style="{ backgroundImage: `url('${set.primary.thumburi}')` }" x-on:click="selectSetByID(set.id)">
-								</div>
-							</div>
-						</template>
+						<div id="setlist" :class="selectedSet.id ? 'shorty' : ''" x-transition>
+							<template x-for="set in sets" :key="set.id">
+								<div class="thumb" x-bind:style="{ backgroundImage: `url('${set.primary.thumburi}')` }" x-on:click="selectSetByID(set.id)"></div>
+							</template>
+						</div>
 					</div>
 					<div id="setphotos" class="row" x-show="selectedSet.id" x-transition.opacity>
 						<template x-for="photo in selectedSet.photo" :key="photo.id">
