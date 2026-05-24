@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>No3rdW - Paul Gallo Portfolio Site</title>
-		<meta name="description" content="Paul Gallo's Portfolio Site">
+		<title>No3rdW - Paul Gallo's Portfolio</title>
+		<meta name="description" content="Paul Gallo's Portfolio">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="theme-color" content="#ffffff">
 		<link rel="icon" href="./img/favicon.svg" />
@@ -14,23 +14,30 @@
 	<body>
 		<div id="app">
 			<header>
-				<img src="./img/logo.svg" class="logo" />
+				<a href="/"><img src="./img/logo.svg" class="logo" /></a>
 			</header>
-			<main>
-				<div id="flickr" x-data="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()" @keyup.escape.window="escape()">
-					<div id="sets">
+			<main x-data="flickr">
+				<nav class="my-4 text-center nav nav-underline nav-justified">
+					<a class="nav-link active" href="#" x-on:click="selectSetByID()">Photography</a>
+					<a class="nav-link" href="public/Paul Gallo Resume.pdf" target="_blank" @click="$el.blur()">Resume</a>
+					<a class="nav-link" href="mailto:no3rdw@gmail.com" @click="$el.blur()">Email</a>
+				</nav>
+				<div id="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()" @keyup.escape.window="escape()">
+					<div id="loading" class="small text-center">Loading photosets from Flickr...</div>
+					<div id="sets" :class="selectedSet.id ? 'open' : ''">
 						<div class="settitle" x-on:click="selectSetByID()" x-show="selectedSet.id" x-transition><h3 class="m-0" x-text="selectedSet.title"></h3><small>Click to change category</small></div>
-						<div id="setlist" :class="selectedSet.id ? 'shorty' : ''" x-transition>
+						<div id="setlist" class="row" x-transition>
 							<template x-for="set in sets" :key="set.id">
-								<div class="thumb" x-bind:style="{ backgroundImage: `url('${set.primary.thumburi}')` }" x-on:click="selectSetByID(set.id)" :title="`Open Photoset: ${set.title}`"></div>
+								<div class="col-4 col-md-2">
+									<div class="thumb" x-bind:style="{ backgroundImage: `url('${set.primary.thumburi}')` }" x-on:click="selectSetByID(set.id)" :title="`Open Photoset: ${set.title}`"></div>
+								</div>
 							</template>
 						</div>
 					</div>
 					<div id="setphotos" class="row" x-show="selectedSet.id" x-transition.opacity>
 						<template x-for="photo in selectedSet.photo" :key="photo.id">
 							<div class="col-4 col-md-2">
-								<div class="thumb" x-bind:style="{ backgroundImage: `url('${photo.thumburi}')` }"  x-on:click="selectPhotoByID(photo.id)" :title="`Open Photo: ${photo.title}`">
-								</div>
+								<div class="thumb" x-bind:style="{ backgroundImage: `url('${photo.thumburi}')` }"  x-on:click="selectPhotoByID(photo.id)" :title="`Open Photo: ${photo.title}`"></div>
 							</div>
 						</template>
 					</div>

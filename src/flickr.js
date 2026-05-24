@@ -15,12 +15,12 @@ export default function flickr() {
 
 		async init() {
 			this.setArray = await this.getSets();
+			document.getElementById('loading').style.display = 'none';
 
 			for(const i of this.setArray) {
 				this.sets[i.id] = await this.getSetDetail(i.id);
 
 				let set = this.sets[i.id];
-				//set.primary = await this.getPhotoDetails(set.primary);
 				set.primary = set.photo.filter(p => {
 					return p.id === set.primary
 				})[0];
@@ -137,15 +137,11 @@ export default function flickr() {
 		},
 
 		prevPhoto() {
-		//	if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
-		//	if (this.selectedPhoto.id == "") { return this.selectPhoto(this.selectedSet.photo[0]); }
 			this.selectPhoto(this.getPrevPhoto());
 			this.preloadPhoto(this.getPrevPhoto());
 		},
 
 		nextPhoto() {
-		//	if (this.selectedSet.id == "") { this.selectSetByID(this.setArray[0].id); }
-		//	if (this.selectedPhoto.id == "") { return this.selectPhoto(this.selectedSet.photo[0]); }
 			this.selectPhoto(this.getNextPhoto());
 			this.preloadPhoto(this.getNextPhoto());
 		},

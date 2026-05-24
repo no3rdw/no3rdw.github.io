@@ -3,6 +3,9 @@
 body {
 	--bs-body-bg: black;
 	--bs-body-color: white;
+	--bs-emphasis-color: white;
+	--bs-link-color: cyan;
+	--bs-link-hover-color: white;
 	--bs-body-font-family: 'Mako', 'Trebuchet MS', arial, serif;
 	overflow-y: scroll;
 
@@ -60,12 +63,33 @@ a {
 		}
 	}
 
+	& #setphotos {
+		position: relative;
+		z-index: 9;
+	}
+
 	& #sets {
 		position: relative;
 
+		&.open {
+			height: 90px;
+
+			& #setlist {
+
+				& .thumb {
+					filter: blur(6px) opacity(0.3);
+					transition: all .2s ease-in-out;
+
+					@media (width >= 768px) {
+						padding-bottom: calc(9vw);
+					}
+				}
+			}
+		}
+
 		& #setlist {
 			display: flex;
-			flex-wrap: nowrap;
+			flex-wrap: wrap;
 
 			& .thumb {
 				width:100%;
@@ -87,16 +111,6 @@ a {
 				margin-right:0px;
 			}
 
-		
-			&.shorty .thumb {
-				filter: blur(6px) opacity(0.3);
-				transition: all .2s ease-in-out;
-
-				@media (width >= 768px) {
-						padding-bottom: calc(9vw);
-				}
-
-			}
 		}
 			
 		& .settitle {
