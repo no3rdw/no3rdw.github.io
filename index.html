@@ -21,7 +21,7 @@
 			<main x-data="flickr">
 				<nav class="my-4 text-center nav nav-underline nav-justified">
 					<a class="nav-link active" href="#" x-on:click="selectSetByID()">Photography</a>
-					<a class="nav-link" href="public/Paul Gallo Resume.pdf" target="_blank" @click="$el.blur()">Resume</a>
+					<a class="nav-link" href="Paul Gallo Resume.pdf" target="_blank" @click="$el.blur()">Resume</a>
 					<a class="nav-link" href="mailto:no3rdw@gmail.com" @click="$el.blur()">Email</a>
 				</nav>
 				<div id="flickr" @keyup.left.window="prevPhoto()" @keyup.right.window="nextPhoto()" @keyup.escape.window="escape()">
